@@ -63,7 +63,11 @@ struct pollfd
 #include <fcntl.h>
 #include <netdb.h>
 #include <netinet/in.h>
-#include <netinet/ip.h>
+#if defined(__linux__) || defined(__APPLE__) 
+#include <netinet/ip.h> 
+#else 
+#include "compat/ip.h" 
+#endif
 #include <netinet/tcp.h>
 #include <poll.h>
 #include <sys/select.h>
